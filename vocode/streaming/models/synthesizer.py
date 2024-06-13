@@ -237,3 +237,12 @@ class CartesiaSynthesizerConfig(SynthesizerConfig, type=SynthesizerType.CARTESIA
     api_key: Optional[str] = None
     model_id: str = DEFAULT_CARTESIA_MODEL_ID
     voice_id: str = DEFAULT_CARTESIA_VOICE_ID
+
+
+DEFAULT_ORCA_MODEL = "orca_params_female.pv"
+
+
+class OrcaSynthesizerConfig(SynthesizerConfig, type=SynthesizerType.ORCA.value):  # type: ignore
+    api_key: Optional[str] = None
+    speech_rate: Optional[float] = None
+    model_file = DEFAULT_ORCA_MODEL

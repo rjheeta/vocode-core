@@ -1606,7 +1606,7 @@ files = [
 name = "joblib"
 version = "1.4.2"
 description = "Lightweight pipelining with Python functions"
-optional = true
+optional = false
 python-versions = ">=3.8"
 files = [
     {file = "joblib-1.4.2-py3-none-any.whl", hash = "sha256:06d478d5674cbc267e7496a410ee875abd68e4340feff4490bcb7afb88060ae6"},
@@ -2173,7 +2173,7 @@ files = [
 name = "nltk"
 version = "3.8.1"
 description = "Natural Language Toolkit"
-optional = true
+optional = false
 python-versions = ">=3.7"
 files = [
     {file = "nltk-3.8.1-py3-none-any.whl", hash = "sha256:fd5c9109f976fa86bcadba8f91e47f5e9293bd034474752e92a520f81c93dda5"},
@@ -2540,6 +2540,17 @@ python-versions = ">=3.7"
 files = [
     {file = "pvkoala-2.0.1-py3-none-any.whl", hash = "sha256:8b153e076b4d14adccdcb4d800aa84e8d2f91e0640b959677582d3128cbcb249"},
     {file = "pvkoala-2.0.1.tar.gz", hash = "sha256:5e017c671fc1338d42dc20f9dee003d0144bbba1757b6f1fcd6272c5308da242"},
+]
+
+[[package]]
+name = "pvorca"
+version = "0.2.3"
+description = "Orca Streaming Text-to-Speech Engine"
+optional = true
+python-versions = ">=3.8"
+files = [
+    {file = "pvorca-0.2.3-py3-none-any.whl", hash = "sha256:c6f82cd8543031770ec60d04e2bebee567b976ff5e2f5ba2f7ce6cc5a6ff11cc"},
+    {file = "pvorca-0.2.3.tar.gz", hash = "sha256:c75b74ec32615cbf27a8900c4ed447295891e63561beb1002c2c3812a133a616"},
 ]
 
 [[package]]
@@ -4496,13 +4507,13 @@ doc = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linke
 test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more-itertools", "pytest (>=6,!=8.1.*)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-ignore-flaky", "pytest-mypy", "pytest-ruff (>=0.2.1)"]
 
 [extras]
-all = ["cartesia", "google-cloud-speech", "google-cloud-texttospeech", "langchain", "langchain-community", "miniaudio", "nltk", "pvkoala", "pydub", "twilio", "vonage"]
+all = ["cartesia", "google-cloud-speech", "google-cloud-texttospeech", "langchain", "langchain-community", "miniaudio", "nltk", "pvkoala", "pvorca", "pydub", "twilio", "vonage"]
 misc = ["langchain", "langchain-community"]
-synthesizers = ["cartesia", "google-cloud-texttospeech", "miniaudio", "nltk", "pvkoala", "pydub"]
+synthesizers = ["cartesia", "google-cloud-texttospeech", "miniaudio", "pvkoala", "pvorca", "pydub"]
 telephony = ["twilio", "vonage"]
 transcribers = ["google-cloud-speech"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "0153515588beee9a13a33a4fb32d26dad863de37b6c55f903148f9c88904dc82"
+content-hash = "8ca5299eec9836e9b920fd3817b3cc0624d958ee4c3bcfa249fa903529ea2867"
