@@ -48,7 +48,6 @@ class OrcaSynthesizer(BaseSynthesizer[OrcaSynthesizerConfig]):
         self.speech_rate = synthesizer_config.speech_rate
         self.sample_rate = SamplingRate.RATE_22050.value # The only rate supported
         self.output_format = "pcm" # The only format supported
-        self.model_file = synthesizer_config.model_file
         
     async def create_speech_uncached(
         self,
