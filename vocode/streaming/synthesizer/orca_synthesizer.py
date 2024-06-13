@@ -3,6 +3,7 @@ import os
 import wave
 import hashlib
 import struct
+from typing import Optional
 
 from vocode import getenv
 from vocode.streaming.models.audio import SamplingRate
@@ -35,6 +36,7 @@ class OrcaSynthesizer(BaseSynthesizer[OrcaSynthesizerConfig]):
         if synthesizer_config.speech_rate and not (0.7 <= synthesizer_config.speech_rate <= 1.3):
             raise ValueError("Speech rate must be between 0.7 and 1.3 inclusive")
 
+        self.model_path: Optional[str]
         if synthesizer_config.model_file:
             # By default, model files are stored in the same directory as the Orca library
             self.model_path = os.path.join(
@@ -42,12 +44,14 @@ class OrcaSynthesizer(BaseSynthesizer[OrcaSynthesizerConfig]):
                 synthesizer_config.model_file
             )
         else:
+            # Will use the default model file
             self.model_path = None
 
         self.orca = self.orca_lib.create(access_key=self.api_key, model_path=self.model_path)
         self.speech_rate = synthesizer_config.speech_rate
         self.sample_rate = SamplingRate.RATE_22050.value # The only rate supported
         self.output_format = "pcm" # The only format supported
+        self.model_file = synthesizer_config.model_file
         
     async def create_speech_uncached(
         self,
@@ -87,7 +91,7 @@ class OrcaSynthesizer(BaseSynthesizer[OrcaSynthesizerConfig]):
             (
                 "orca",
                 hashed_api_key,
-                synthesizer_config.model_file,
+                str(synthesizer_config.model_file),
                 "pcm"
             )
         )
