@@ -1,4 +1,5 @@
 import io
+import os
 import wave
 import hashlib
 import struct
@@ -34,7 +35,16 @@ class OrcaSynthesizer(BaseSynthesizer[OrcaSynthesizerConfig]):
         if synthesizer_config.speech_rate and not (0.7 <= synthesizer_config.speech_rate <= 1.3):
             raise ValueError("Speech rate must be between 0.7 and 1.3 inclusive")
 
-        self.orca = self.orca_lib.create(access_key=self.api_key)
+        if synthesizer_config.model_file:
+            # By default, model files are stored in the same directory as the Orca library
+            self.model_path = os.path.join(
+                os.path.dirname(self.orca_lib.default_model_path()),
+                synthesizer_config.model_file
+            )
+        else:
+            self.model_path = None
+
+        self.orca = self.orca_lib.create(access_key=self.api_key, model_path=self.model_path)
         self.speech_rate = synthesizer_config.speech_rate
         self.sample_rate = SamplingRate.RATE_22050.value # The only rate supported
         self.output_format = "pcm" # The only format supported

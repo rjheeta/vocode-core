@@ -246,4 +246,4 @@ DEFAULT_ORCA_MODEL = "orca_params_female.pv"
 class OrcaSynthesizerConfig(SynthesizerConfig, type=SynthesizerType.ORCA.value):  # type: ignore
     api_key: Optional[str] = None
     speech_rate: Optional[float] = None
-    model_file = DEFAULT_ORCA_MODEL
+    model_file: str = DEFAULT_ORCA_MODEL
