@@ -24,6 +24,7 @@ class SynthesizerType(str, Enum):
     BARK = "synthesizer_bark"
     POLLY = "synthesizer_polly"
     CARTESIA = "synthesizer_cartesia"
+    ORCA = "synthesizer_orca"
 
 
 class SentimentConfig(BaseModel):
